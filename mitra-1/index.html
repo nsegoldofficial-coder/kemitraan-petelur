@@ -3,84 +3,376 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katalog Kemitraan Petelur - Mitra 1</title>
+    <title>Kemitraan Petelur - PT RA FARM INDONESIA</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }
-        header { text-align: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 20px; margin-bottom: 30px; }
-        h1 { color: #2c5282; margin-bottom: 5px; }
-        .subtitle { color: #718096; font-size: 1.2em; }
-        .hero-image { width: 100%; height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 30px; background-color: #eee; }
-        .section { margin-bottom: 40px; }
-        h2 { color: #2b6cb0; border-left: 5px solid #4299e1; padding-left: 15px; }
-        .product-card { border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .product-image { width: 100%; height: 200px; object-fit: cover; background-color: #f7fafc; }
-        .product-details { padding: 20px; }
-        .product-title { font-size: 1.4em; font-weight: bold; color: #2d3748; }
-        .price { color: #38a169; font-weight: bold; font-size: 1.2em; margin: 10px 0; }
-        .features { list-style-type: none; padding: 0; }
-        .features li { padding: 5px 0; border-bottom: 1px dashed #e2e8f0; }
-        .footer { text-align: center; margin-top: 50px; font-size: 0.9em; color: #718096; }
+        :root {
+            --primary-gold: #d4af37;
+            --secondary-bronze: #cd7f32;
+            --dark-brown: #2d1e15;
+            --light-cream: #fdf5e6;
+            --card-bg: #3e2723;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a120b;
+            color: var(--light-cream);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(to bottom, #000000, #2d1e15);
+            text-align: center;
+            padding: 20px;
+            border-bottom: 3px solid var(--primary-gold);
+        }
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-gold);
+            object-fit: cover;
+            background-color: #fff;
+        }
+        h1 {
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            margin: 10px 0 5px;
+            font-size: 1.8em;
+            text-shadow: 1px 1px 2px black;
+        }
+        .subtitle {
+            color: #ccc;
+            font-size: 1.1em;
+            font-weight: 300;
+        }
+        .hero-section {
+            position: relative;
+            text-align: center;
+            color: white;
+            background-image: url('images/hero.jpg'); /* User needs to upload this */
+            background-size: cover;
+            background-position: center;
+            padding: 80px 20px;
+        }
+        .hero-overlay {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            border: 2px solid var(--primary-gold);
+        }
+        .hero-title {
+            font-size: 2em;
+            color: var(--primary-gold);
+            margin: 0;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px #000;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .section-title {
+            text-align: center;
+            color: var(--primary-gold);
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--secondary-bronze);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        .center-wrapper { text-align: center; }
+
+        /* Packages Grid */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        .package-card {
+            background: linear-gradient(145deg, #3e2723, #2d1e15);
+            border: 1px solid var(--secondary-bronze);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .package-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+            border-color: var(--primary-gold);
+        }
+        .package-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: white;
+            text-transform: uppercase;
+        }
+        /* Badge colors based on tier */
+        .tier-bronze { color: #cd7f32; }
+        .tier-silver { color: #c0c0c0; }
+        .tier-gold { color: #ffd700; }
+        .tier-platinum { color: #e5e4e2; }
+        .tier-diamond { color: #b9f2ff; }
+        .tier-vvip { color: #ff69b4; }
+        .tier-super { color: #ff4500; }
+
+        .package-price {
+            font-size: 1.3em;
+            color: var(--primary-gold);
+            font-weight: bold;
+            margin: 10px 0;
+            border-top: 1px dashed #666;
+            border-bottom: 1px dashed #666;
+            padding: 10px 0;
+        }
+        .potential-result {
+            font-size: 1.1em;
+            color: #98fb98; /* Light green */
+        }
+        .potential-label {
+            font-size: 0.8em;
+            color: #aaa;
+            display: block;
+        }
+
+        /* Process Steps */
+        .process-list {
+            list-style: none;
+            padding: 0;
+        }
+        .process-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-left: 5px solid var(--primary-gold);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+        }
+        .step-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--secondary-bronze);
+            margin-right: 20px;
+            min-width: 40px;
+        }
+        .step-content h3 {
+            margin: 0 0 5px;
+            color: var(--primary-gold);
+        }
+        .step-content p {
+            margin: 0;
+            font-size: 0.95em;
+            color: #ddd;
+        }
+
+        /* Profit Sharing Box */
+        .profit-box {
+            background: linear-gradient(to right, #5d4037, #3e2723);
+            border: 2px solid var(--primary-gold);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            margin: 40px 0;
+        }
+        .profit-highlight {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--primary-gold);
+            margin: 10px 0;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background-color: #2d1e15;
+            border-top: 2px solid var(--primary-gold);
+        }
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            display: inline-block;
+            transition: background 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #000;
+            font-size: 0.9em;
+            color: #666;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Kemitraan Petelur</h1>
-        <div class="subtitle">Proposal Penawaran Kerjasama - Project Mitra 1</div>
+        <!-- Logo Placeholder: User needs to upload logo.jpg -->
+        <img src="images/logo.jpg" alt="Logo PT RA FARM" class="logo" onerror="this.src='https://placehold.co/120x120/d4af37/000000?text=RA+FARM'">
+        <h1>PT RA FARM INDONESIA</h1>
+        <div class="subtitle">Sistem Kerja Titip Modal Peternakan Ayam Petelur</div>
     </header>
 
-    <!-- Hero Image Placeholder -->
-    <img src="https://placehold.co/800x300/2c5282/ffffff?text=Farm+Ayam+Petelur+Modern" alt="Farm Overview" class="hero-image">
-
-    <div class="section">
-        <h2>Tentang Program</h2>
-        <p>Program kemitraan petelur kami menawarkan peluang investasi yang menjanjikan di sektor peternakan ayam petelur dengan manajemen profesional dan transparan.</p>
+    <div class="hero-section">
+        <div class="hero-overlay">
+            <h2 class="hero-title">MITRA USAHA TERPERCAYA</h2>
+            <p>Raih Potensi Keuntungan Hingga Ratusan Juta Rupiah</p>
+        </div>
     </div>
 
-    <div class="section">
-        <h2>Paket Kemitraan</h2>
+    <div class="container">
+        <div class="center-wrapper">
+            <h2 class="section-title">Pilihan Paket Modal</h2>
+        </div>
         
-        <div class="product-card">
-            <!-- Product Image Placeholder -->
-            <img src="https://placehold.co/600x400/4299e1/ffffff?text=Paket+Starter+1000+Ekor" alt="Paket Starter" class="product-image">
-            <div class="product-details">
-                <div class="product-title">Paket Starter (1000 Ekor)</div>
-                <div class="price">Rp 150.000.000</div>
-                <ul class="features">
-                    <li>✅ Kandang Baterai Modern</li>
-                    <li>✅ Bibit Ayam Petelur (Pullet) 13 Minggu</li>
-                    <li>✅ Pakan Starter 1 Bulan</li>
-                    <li>✅ Pendampingan Tenaga Ahli</li>
-                    <li>✅ Garansi Kematian 5%</li>
-                </ul>
+        <div class="packages-grid">
+            <!-- Bronze -->
+            <div class="package-card">
+                <div class="package-name tier-bronze">BRONZE</div>
+                <div class="package-price">Rp 1.000.000</div>
+                <div class="potential-result">
+                    <span class="potential-label">Potensi Hasil:</span>
+                    Rp 20 Juta
+                </div>
+            </div>
+
+            <!-- Silver -->
+            <div class="package-card">
+                <div class="package-name tier-silver">SILVER</div>
+                <div class="package-price">Rp 1.800.000</div>
+                <div class="potential-result">
+                    <span class="potential-label">Potensi Hasil:</span>
+                    Rp 50 Juta
+                </div>
+            </div>
+
+            <!-- Gold -->
+            <div class="package-card">
+                <div class="package-name tier-gold">GOLD</div>
+                <div class="package-price">Rp 2.500.000</div>
+                <div class="potential-result">
+                    <span class="potential-label">Potensi Hasil:</span>
+                    Rp 80 Juta
+                </div>
+            </div>
+
+            <!-- Platinum -->
+            <div class="package-card">
+                <div class="package-name tier-platinum">PLATINUM</div>
+                <div class="package-price">Rp 3.400.000</div>
+                <div class="potential-result">
+                    <span class="potential-label">Potensi Hasil:</span>
+                    Rp 120 Juta
+                </div>
+            </div>
+
+            <!-- Diamond -->
+            <div class="package-card">
+                <div class="package-name tier-diamond">DIAMOND</div>
+                <div class="package-price">Rp 5.500.000</div>
+                <div class="potential-result">
+                    <span class="potential-label">Potensi Hasil:</span>
+                    Rp 150 Juta
+                </div>
+            </div>
+
+            <!-- VVIP -->
+            <div class="package-card">
+                <div class="package-name tier-vvip">VVIP</div>
+                <div class="package-price">Rp 7.700.000</div>
+                <div class="potential-result">
+                    <span class="potential-label">Potensi Hasil:</span>
+                    Rp 200 Juta
+                </div>
+            </div>
+
+            <!-- Super VVIP -->
+            <div class="package-card">
+                <div class="package-name tier-super">SUPER VVIP</div>
+                <div class="package-price">Rp 10.000.000</div>
+                <div class="potential-result">
+                    <span class="potential-label">Potensi Hasil:</span>
+                    Rp 300 Juta
+                </div>
             </div>
         </div>
 
-        <div class="product-card">
-            <!-- Product Image Placeholder -->
-            <img src="https://placehold.co/600x400/2b6cb0/ffffff?text=Paket+Pro+3000+Ekor" alt="Paket Pro" class="product-image">
-            <div class="product-details">
-                <div class="product-title">Paket Pro (3000 Ekor)</div>
-                <div class="price">Rp 420.000.000</div>
-                <ul class="features">
-                    <li>✅ Fasilitas Kandang Semi-Close House</li>
-                    <li>✅ Bibit Ayam Petelur (Pullet) Premium</li>
-                    <li>✅ Sistem Minum Nipple Otomatis</li>
-                    <li>✅ Full Manajemen Operasional</li>
-                    <li>✅ Profit Sharing Menarik</li>
-                </ul>
-            </div>
+        <div class="center-wrapper">
+            <h2 class="section-title">Alur Kerjasama</h2>
         </div>
+
+        <div class="profit-box">
+            <h3>Sistem Bagi Hasil 50% : 50%</h3>
+            <div class="profit-highlight">Kontrak Kemitraan 10 Panen</div>
+            <p>Panen dilakukan setiap 10 hari. Keuntungan dibagi rata antara Mitra dan Pengelola.</p>
+        </div>
+
+        <ul class="process-list">
+            <li class="process-item">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Pilih Paket Modal</h3>
+                    <p>Sesuaikan dengan budget dan target keuntungan Anda (Mulai Rp 1 Juta).</p>
+                </div>
+            </li>
+            <li class="process-item">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Transfer Modal & Terima MOU</h3>
+                    <p>Pembayaran resmi, mendapatkan Surat Perjanjian Kerjasama & Bukti Transfer sah.</p>
+                </div>
+            </li>
+            <li class="process-item">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Pengelolaan oleh Tim Ahli</h3>
+                    <p>Dana digunakan untuk pembelian vitamin, pakan, perawatan, dan tenaga kerja profesional.</p>
+                </div>
+            </li>
+            <li class="process-item">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Transparansi & Monitoring</h3>
+                    <p>Laporan berkala, dokumentasi lengkap, dan peternakan bisa dipantau langsung.</p>
+                </div>
+            </li>
+            <li class="process-item">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3>Legalitas & Keamanan</h3>
+                    <p>Didukung oleh dokumen valid dan MOU resmi untuk keamanan investasi Anda.</p>
+                </div>
+            </li>
+        </ul>
+
     </div>
 
-    <div class="section">
-        <h2>Kontak Kami</h2>
-        <p>Untuk informasi lebih lanjut mengenai proposal ini, silakan hubungi:</p>
-        <p><strong>WhatsApp:</strong> 0812-3456-7890<br>
-        <strong>Email:</strong> info@kemitraanpetelur.id</p>
+    <div class="cta-section">
+        <h2>Siap Bergabung?</h2>
+        <p>Jangan lewatkan kesempatan emas ini. Hubungi admin kami sekarang juga.</p>
+        <br>
+        <a href="https://wa.me/6281234567890" class="btn-whatsapp">Hubungi via WhatsApp</a>
     </div>
 
-    <div class="footer">
-        &copy; 2026 Kemitraan Petelur. All rights reserved.
-    </div>
+    <footer>
+        &copy; 2026 PT RA FARM INDONESIA. All rights reserved.<br>
+        Sistem Kerja Titip Modal Peternakan Ayam Petelur
+    </footer>
 </body>
 </html>
